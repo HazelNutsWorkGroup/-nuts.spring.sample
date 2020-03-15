@@ -1,0 +1,46 @@
+plugins {
+    id 'java'
+    id 'idea' // optional (to generate IntelliJ IDEA project files)
+}
+
+// 根项目及子项目都配置相关插件、属性
+allprojects {
+    apply plugin: 'java'
+
+    group 'org.hazulnut'
+    version '1.0-SNAPSHOT'
+    setProperty('sourceCompatibility', 1.8)
+    setProperty('targetCompatibility', 1.8)
+
+    repositories {
+        maven { url 'https://maven.aliyun.com/repository/public/' }
+        maven { url 'https://maven.aliyun.com/repository/central' }
+        maven { url 'https://maven.aliyun.com/repository/jcenter'}
+        maven { url 'https://maven.aliyun.com/repository/spring/' }
+        maven { url 'https://maven.aliyun.com/repository/spring-plugin'}
+        maven { url 'https://maven.aliyun.com/repository/gradle-plugin'}
+        mavenLocal()
+        mavenCentral()
+        jcenter()
+    }
+}
+
+// 子项目都配置相关插件、属性
+subprojects {
+    dependencies {
+        // https://mvnrepository.com/artifact/org.springframework/spring-context
+        implementation 'org.springframework:spring-context:5.2.4.RELEASE'
+
+//        // https://mvnrepository.com/artifact/org.springframework/spring-test
+//        testImplementation group: 'org.springframework', name: 'spring-test', version: '5.2.4.RELEASE'
+        testImplementation 'org.junit.jupiter:junit-jupiter:5.6.0'
+    }
+
+    test {
+        useJUnitPlatform()
+        testLogging {
+            events "passed", "skipped", "failed"
+        }
+    }
+}
+

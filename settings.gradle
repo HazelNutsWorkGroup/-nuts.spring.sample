@@ -1,0 +1,14 @@
+rootProject.name = 'nuts.spring.sample'
+include 'nuts-spring-annotation'
+findProject(':nuts-spring-annotation')?.name = 'nuts.spring.annotation'
+
+include 'nuts-spring-xml'
+findProject(':nuts-spring-xml')?.name = 'nuts.spring.xml'
+
+// 修改子项目的build.gradle文件名称
+rootProject.children.each {
+    project ->
+        def fileName = project.name.substring(project.name.lastIndexOf('.') + 1)+".gradle"
+        project.setBuildFileName(fileName)
+}
+
