@@ -35,9 +35,9 @@
 ## <a id="step">2.1. 配置步骤</a>  
 
 + **步骤一**  
-    加载Spring XML配置文件
+    加载Spring Java配置文件
 ```java
-    //xml文件加载
+    //Java配置文件加载
     ApplicationContext context = new AnnotationConfigApplicationContext(ModelConfig.class);
 ```  
     Bean 定义
@@ -68,12 +68,52 @@
 ```  
 > **提示：** 对应测试方法 testGetBeanNames  
 
++ **步骤三** 
+    排除指定类型
+```java
+    @Configuration
+    @ComponentScan(value = "nuts.spring.annotation", excludeFilters = {
+            @ComponentScan.Filter(type = FilterType.ANNOTATION, classes = {Controller.class, Configuration.class})
+    })
+    public class ExcludeConfiguration {
+    
+    }
+```  
+> **提示：** 对应测试方法 testExcludeBeanNames  
+
++ **步骤四** 
+    只引入指定类型
+```java
+    @Configuration
+    @ComponentScan(value = "nuts.spring.annotation", includeFilters = {
+            @ComponentScan.Filter(type = FilterType.ANNOTATION, classes = {Service.class})
+    }, useDefaultFilters = false) //需要禁用默认引入规则
+    public class IncludeConfiguration {
+    
+    }
+```  
+> **提示：** 对应测试方法 testIncludeBeanNames  
+
++ **步骤五** 
+    自定义Filter类型
+```java
+    @Configuration
+    @ComponentScan(value = "nuts.spring.annotation", includeFilters = {
+            @ComponentScan.Filter(type = FilterType.CUSTOM, classes = {
+                    CustomerFilter.class
+            })
+    })
+    public class CustomerConfiguration {
+    }
+```  
+> **提示：** 对应测试方法 testIncludeBeanNames  
 
 <p align="right"><a href="#">返回顶部</a></p>  
 
 ## <a id="focus">2.2. 注意事项</a>
 | 框架、组件                                                    | 注意事项                                                      |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| *@Configuration* | 配置类为了防止相关影响，建议只开启测试对应的配置类 |
 | *「框架、组件」* | *「框架、组件」的引入/配置的注意事项。*  |
 |  |  |
 

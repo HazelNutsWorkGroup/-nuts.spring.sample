@@ -1,8 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="nuts.spring.annotation.SpringContextTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2020-03-15T15:34:58" hostname="DESKTOP-KRJAJ5I" time="0.51">
+<testsuite name="nuts.spring.annotation.SpringContextTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-03-16T13:42:28" hostname="DESKTOP-KRJAJ5I" time="0.47">
   <properties/>
-  <testcase name="testGetPersonBean()" classname="nuts.spring.annotation.SpringContextTest" time="0.478"/>
-  <testcase name="testGetBeanNames()" classname="nuts.spring.annotation.SpringContextTest" time="0.031"/>
-  <system-out><![CDATA[]]></system-out>
+  <testcase name="testCustomBeanNames()" classname="nuts.spring.annotation.SpringContextTest" time="0.47"/>
+  <system-out><![CDATA[--->nuts.spring.annotation.SpringContextTest
+--->nuts.spring.annotation.SpringContext$1
+--->nuts.spring.annotation.SpringContext
+--->nuts.spring.annotation.config.DefaultConfiguration
+--->nuts.spring.annotation.config.ExcludeConfiguration
+--->nuts.spring.annotation.config.IncludeConfiguration
+--->nuts.spring.annotation.controller.HelloController
+--->nuts.spring.annotation.model.Person
+--->nuts.spring.annotation.service.HelloService
+--->nuts.spring.annotation.service.impl.HelloServiceImpl
+--->nuts.spring.annotation.util.ContextType
+--->nuts.spring.annotation.util.CustomerFilter
+===>org.springframework.context.annotation.internalConfigurationAnnotationProcessor
+===>org.springframework.context.annotation.internalAutowiredAnnotationProcessor
+===>org.springframework.context.annotation.internalCommonAnnotationProcessor
+===>org.springframework.context.event.internalEventListenerProcessor
+===>org.springframework.context.event.internalEventListenerFactory
+===>customerConfiguration
+===>helloService
+]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

@@ -7,7 +7,9 @@
         http://www.springframework.org/schema/context
         https://www.springframework.org/schema/context/spring-context.xsd">
 
-    <context:component-scan base-package="nuts.spring.xml"/>
+    <context:component-scan base-package="nuts.spring.xml" use-default-filters="false">
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Service"/>
+    </context:component-scan>
     <bean id="person" class="nuts.spring.xml.model.Person"/>
 
 </beans>

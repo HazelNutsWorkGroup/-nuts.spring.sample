@@ -1,0 +1,16 @@
+'--->nuts.spring.xml.SpringContextTest
+%--->nuts.spring.xml.SpringContext$1
+#--->nuts.spring.xml.SpringContext
+0--->nuts.spring.xml.controller.HelloController
+"--->nuts.spring.xml.model.Person
+*--->nuts.spring.xml.service.HelloService
+3--->nuts.spring.xml.service.impl.HelloServiceImpl
+&--->nuts.spring.xml.util.ContextType
+)--->nuts.spring.xml.util.CustomerFilter
+===>helloService
+U===>org.springframework.context.annotation.internalConfigurationAnnotationProcessor
+Q===>org.springframework.context.annotation.internalAutowiredAnnotationProcessor
+N===>org.springframework.context.annotation.internalCommonAnnotationProcessor
+F===>org.springframework.context.event.internalEventListenerProcessor
+D===>org.springframework.context.event.internalEventListenerFactory
+===>person

@@ -1,8 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="nuts.spring.xml.SpringContextTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2020-03-15T14:46:50" hostname="DESKTOP-KRJAJ5I" time="0.605">
+<testsuite name="nuts.spring.xml.SpringContextTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-03-16T14:02:37" hostname="DESKTOP-KRJAJ5I" time="0.786">
   <properties/>
-  <testcase name="testGetPersonBean()" classname="nuts.spring.xml.SpringContextTest" time="0.525"/>
-  <testcase name="testGetBeanNames()" classname="nuts.spring.xml.SpringContextTest" time="0.078"/>
-  <system-out><![CDATA[]]></system-out>
+  <testcase name="testCustomBeanNames()" classname="nuts.spring.xml.SpringContextTest" time="0.786"/>
+  <system-out><![CDATA[--->nuts.spring.xml.SpringContextTest
+--->nuts.spring.xml.SpringContext$1
+--->nuts.spring.xml.SpringContext
+--->nuts.spring.xml.controller.HelloController
+--->nuts.spring.xml.model.Person
+--->nuts.spring.xml.service.HelloService
+--->nuts.spring.xml.service.impl.HelloServiceImpl
+--->nuts.spring.xml.util.ContextType
+--->nuts.spring.xml.util.CustomerFilter
+===>helloService
+===>org.springframework.context.annotation.internalConfigurationAnnotationProcessor
+===>org.springframework.context.annotation.internalAutowiredAnnotationProcessor
+===>org.springframework.context.annotation.internalCommonAnnotationProcessor
+===>org.springframework.context.event.internalEventListenerProcessor
+===>org.springframework.context.event.internalEventListenerFactory
+===>person
+]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
