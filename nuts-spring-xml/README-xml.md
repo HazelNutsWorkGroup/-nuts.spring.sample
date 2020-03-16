@@ -42,7 +42,6 @@
 ```  
     Bean 定义
 ```xml
-    //
     <bean id="person" class="nuts.spring.xml.model.Person"/>
 ```  
 > **提示：** 对应测试方法 testGetPersonBean  
@@ -53,6 +52,38 @@
     <context:component-scan base-package="nuts.spring.xml"/>
 ```  
 > **提示：** 对应测试方法 testGetBeanNames  
+
++ **步骤三** 
+    exclude-filter
+```xml
+    <context:component-scan base-package="nuts.spring.xml">
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
+    <bean id="person" class="nuts.spring.xml.model.Person"/>
+```  
+> **提示：** 对应测试方法 testExcludeBeanNames  
+
+
++ **步骤四** 
+    include-filter
+```xml
+    <context:component-scan base-package="nuts.spring.xml" use-default-filters="false">
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Service"/>
+    </context:component-scan>
+    <bean id="person" class="nuts.spring.xml.model.Person"/>
+```  
+> **提示：** 对应测试方法 testIncludeBeanNames  
+
+
++ **步骤五** 
+    custom-filter
+```xml
+    <context:component-scan base-package="nuts.spring.xml" use-default-filters="false">
+        <context:include-filter type="custom" expression="nuts.spring.xml.util.CustomerFilter"/>
+    </context:component-scan >
+    <bean id="person" class="nuts.spring.xml.model.Person"/>
+```  
+> **提示：** 对应测试方法 testCustomBeanNames  
 
 
 <p align="right"><a href="#">返回顶部</a></p>  

@@ -69,7 +69,7 @@
 > **提示：** 对应测试方法 testGetBeanNames  
 
 + **步骤三** 
-    排除指定类型
+    excludeFilters
 ```java
     @Configuration
     @ComponentScan(value = "nuts.spring.annotation", excludeFilters = {
@@ -82,7 +82,7 @@
 > **提示：** 对应测试方法 testExcludeBeanNames  
 
 + **步骤四** 
-    只引入指定类型
+    includeFilters
 ```java
     @Configuration
     @ComponentScan(value = "nuts.spring.annotation", includeFilters = {
