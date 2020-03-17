@@ -6,5 +6,9 @@ package nuts.spring.annotation.util;
 public enum ContextType {
     Exclude,
     Include,
-    Custom;
+    Custom,
+    Scope,
+    Lazy,
+    Conditional,
+    Import;
 }

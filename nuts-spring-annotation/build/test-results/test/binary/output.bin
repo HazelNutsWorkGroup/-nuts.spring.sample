@@ -1,19 +1,12 @@
-.--->nuts.spring.annotation.SpringContextTest
-,--->nuts.spring.annotation.SpringContext$1
-*--->nuts.spring.annotation.SpringContext
-8--->nuts.spring.annotation.config.DefaultConfiguration
-8--->nuts.spring.annotation.config.ExcludeConfiguration
-8--->nuts.spring.annotation.config.IncludeConfiguration
-7--->nuts.spring.annotation.controller.HelloController
-)--->nuts.spring.annotation.model.Person
-1--->nuts.spring.annotation.service.HelloService
-:--->nuts.spring.annotation.service.impl.HelloServiceImpl
----->nuts.spring.annotation.util.ContextType
-0--->nuts.spring.annotation.util.CustomerFilter
+Instance person...
+Spring Context initialized...
 U===>org.springframework.context.annotation.internalConfigurationAnnotationProcessor
 Q===>org.springframework.context.annotation.internalAutowiredAnnotationProcessor
 N===>org.springframework.context.annotation.internalCommonAnnotationProcessor
 F===>org.springframework.context.event.internalEventListenerProcessor
 D===>org.springframework.context.event.internalEventListenerFactory
-===>customerConfiguration
-===>helloService
+===>importConfiguration
+(===>nuts.spring.annotation.model.Group
+*===>nuts.spring.annotation.model.Classic
+===>person
+===>school

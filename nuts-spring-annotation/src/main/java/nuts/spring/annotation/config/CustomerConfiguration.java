@@ -10,12 +10,12 @@ import org.springframework.context.annotation.FilterType;
 /**
  * @author Sleeber
  */
-@Configuration
-@ComponentScan(value = "nuts.spring.annotation", includeFilters = {
-        @ComponentScan.Filter(type = FilterType.CUSTOM, classes = {
-                CustomerFilter.class
-        })
-}, useDefaultFilters = false)
+//@Configuration
+//@ComponentScan(value = "nuts.spring.annotation", includeFilters = {
+//        @ComponentScan.Filter(type = FilterType.CUSTOM, classes = {
+//                CustomerFilter.class
+//        })
+//}, useDefaultFilters = false)
 public class CustomerConfiguration {
 
     @Bean("person")

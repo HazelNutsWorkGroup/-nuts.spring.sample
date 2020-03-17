@@ -20,6 +20,12 @@ class SpringContextTest {
     void tearDown() {
     }
 
+    private void printBeanNames(String[] beanNames) {
+        for (String beanName : beanNames) {
+            System.out.println("===>" + beanName);
+        }
+    }
+
     @Test
     @DisplayName("testGetPersonBean")
     void testGetPersonBean() {
@@ -33,9 +39,7 @@ class SpringContextTest {
     void testGetBeanNames() {
         SpringContext springContext = new SpringContext();
         String[] beanNames = springContext.getBeanNames();
-        for (String beanName : beanNames) {
-            System.out.println("===>" + beanName);
-        }
+        printBeanNames(beanNames);
         Assert.isTrue(Arrays.asList(beanNames).contains("helloController"), "controller");
     }
 
@@ -44,9 +48,7 @@ class SpringContextTest {
     void testExcludeBeanNames() {
         SpringContext springContext = new SpringContext(ContextType.Exclude);
         String[] beanNames = springContext.getBeanNames();
-        for (String beanName : beanNames) {
-            System.out.println("===>" + beanName);
-        }
+        printBeanNames(beanNames);
         Assert.isTrue(!Arrays.asList(beanNames).contains("helloController"), "Controller");
         Assert.isTrue(Arrays.asList(beanNames).contains("helloService"), "Service");
     }
@@ -56,9 +58,7 @@ class SpringContextTest {
     void testIncludeBeanNames() {
         SpringContext springContext = new SpringContext(ContextType.Include);
         String[] beanNames = springContext.getBeanNames();
-        for (String beanName : beanNames) {
-            System.out.println("===>" + beanName);
-        }
+        printBeanNames(beanNames);
         Assert.isTrue(!Arrays.asList(beanNames).contains("helloController"), "Controller");
         Assert.isTrue(Arrays.asList(beanNames).contains("helloService"), "Service");
     }
@@ -68,10 +68,47 @@ class SpringContextTest {
     void testCustomBeanNames() {
         SpringContext springContext = new SpringContext(ContextType.Custom);
         String[] beanNames = springContext.getBeanNames();
-        for (String beanName : beanNames) {
-            System.out.println("===>" + beanName);
-        }
+        printBeanNames(beanNames);
         Assert.isTrue(Arrays.asList(beanNames).contains("helloService"), "Service");
 
     }
+
+    @Test
+    @DisplayName("testInstanceScope")
+    void testInstanceScope() {
+        SpringContext springContext = new SpringContext(ContextType.Scope);
+        System.out.println("Spring Context initialized...");
+        Person personBean = springContext.getPersonBean();
+        Assert.isInstanceOf(Person.class, personBean);
+
+    }
+
+    @Test
+    @DisplayName("testInstanceScope")
+    void testInstanceLazy() {
+        SpringContext springContext = new SpringContext(ContextType.Lazy);
+        System.out.println("Spring Context initialized...");
+        Person personBean = springContext.getPersonBean();
+        Assert.isInstanceOf(Person.class, personBean);
+
+    }
+
+    @Test
+    @DisplayName("testConditional")
+    void testConditional() {
+        SpringContext springContext = new SpringContext(ContextType.Conditional);
+        System.out.println("Spring Context initialized...");
+        String[] beanNames = springContext.getBeanNames();
+        printBeanNames(beanNames);
+    }
+
+    @Test
+    @DisplayName("testImportBean")
+    void testImportBean(){
+        SpringContext springContext = new SpringContext(ContextType.Import);
+        System.out.println("Spring Context initialized...");
+        String[] beanNames = springContext.getBeanNames();
+        printBeanNames(beanNames);
+    }
+
 }

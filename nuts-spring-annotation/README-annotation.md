@@ -108,6 +108,92 @@
 ```  
 > **提示：** 对应测试方法 testIncludeBeanNames  
 
++ **步骤六** 
+    Scope 指定单实例/多实例
+```java
+    /**
+     * Scope's parameter
+     * singleton Single instance, created during container initialization
+     * prototype multi instance, created only when getting examples
+     */
+    @Scope("prototype")
+    @Bean
+    public Person person() {
+        System.out.println("Instance person...");
+        return new Person();
+    }
+```  
+> **提示：** 对应测试方法 testInstanceScope  
+
++ **步骤七** 
+    Lazy 懒加载
+```java
+    @Lazy
+    @Bean
+    public Person person() {
+        System.out.println("Instance person...");
+        return new Person();
+    }
+```  
+> **提示：** 对应测试方法 testInstanceLazy
+
++ **步骤八** 
+    Conditional 按条件加载
+```java
+    @Conditional(WindowsCondition.class)
+    @Bean("windows")
+    public Person getWindows() {
+        System.out.println("Instance Windows...");
+        return new Person();
+    }
+
+    @Conditional(LinuxCondition.class)
+    @Bean("linux")
+    public Person getLinux() {
+        System.out.println("Instance Linux...");
+        return new Person();
+    }
+```  
+> **提示：** 对应测试方法 testConditional   
+
++ **步骤九** 
+    Import 快速引入第三方组件
+```java
+@Configuration
+@Import(Group.class)
+public class ImportConfiguration {
+
+    /**
+     * ComponentScan
+     * Bean
+     * Import
+     */
+    @Bean
+    public Person person() {
+        System.out.println("Instance person...");
+        return new Person();
+    }
+}
+```  
+> **提示：** 对应测试方法 testImportBean
+
++ **步骤十** 
+    ImportSelector 方式引入第三方组件
+```java
+    @Configuration
+    @Import({Group.class, MyImportSelector.class, MyImportBeanDefinitionRegistrar.class})
+    public class ImportConfiguration { }
+
+    public class MyImportSelector implements ImportSelector {
+        @Override
+        public String[] selectImports(AnnotationMetadata importingClassMetadata) {
+            return new String[]{"nuts.spring.annotation.model.Classic"};
+        }
+    }
+```  
+> **提示：** 对应测试方法 testImportBean  
+
+
 <p align="right"><a href="#">返回顶部</a></p>  
 
 ## <a id="focus">2.2. 注意事项</a>

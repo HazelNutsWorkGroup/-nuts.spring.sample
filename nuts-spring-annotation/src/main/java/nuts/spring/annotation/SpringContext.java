@@ -1,9 +1,6 @@
 package nuts.spring.annotation;
 
-import nuts.spring.annotation.config.CustomerConfiguration;
-import nuts.spring.annotation.config.DefaultConfiguration;
-import nuts.spring.annotation.config.ExcludeConfiguration;
-import nuts.spring.annotation.config.IncludeConfiguration;
+import nuts.spring.annotation.config.*;
 import nuts.spring.annotation.model.Person;
 import nuts.spring.annotation.util.ContextType;
 import org.springframework.context.ApplicationContext;
@@ -37,6 +34,22 @@ public class SpringContext {
             }
             case Custom: {
                 context = new AnnotationConfigApplicationContext(CustomerConfiguration.class);
+                break;
+            }
+            case Scope: {
+                context = new AnnotationConfigApplicationContext(ScopeConfiguration.class);
+                break;
+            }
+            case Lazy: {
+                context = new AnnotationConfigApplicationContext(LazyConfiguration.class);
+                break;
+            }
+            case Conditional: {
+                context = new AnnotationConfigApplicationContext(ConditionalConfiguration.class);
+                break;
+            }
+            case Import: {
+                context = new AnnotationConfigApplicationContext(ImportConfiguration.class);
                 break;
             }
 
