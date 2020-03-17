@@ -1,12 +1,0 @@
-School Structure...
-School initializing...
-Spring Context initialized...
-U===>org.springframework.context.annotation.internalConfigurationAnnotationProcessor
-Q===>org.springframework.context.annotation.internalAutowiredAnnotationProcessor
-N===>org.springframework.context.annotation.internalCommonAnnotationProcessor
-F===>org.springframework.context.event.internalEventListenerProcessor
-D===>org.springframework.context.event.internalEventListenerFactory
-===>lifeCycleConfiguration
-===>school
-.nuts.spring.annotation.model.School@748c51ad
-school destroy...
