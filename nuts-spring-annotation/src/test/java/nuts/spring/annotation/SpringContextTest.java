@@ -104,11 +104,44 @@ class SpringContextTest {
 
     @Test
     @DisplayName("testImportBean")
-    void testImportBean(){
+    void testImportBean() {
         SpringContext springContext = new SpringContext(ContextType.Import);
         System.out.println("Spring Context initialized...");
         String[] beanNames = springContext.getBeanNames();
         printBeanNames(beanNames);
+    }
+
+    @Test
+    @DisplayName("testFactoryBean")
+    void testFactoryBean() {
+        SpringContext springContext = new SpringContext(ContextType.FactoryBean);
+        System.out.println("Spring Context initialized...");
+        String[] beanNames = springContext.getBeanNames();
+        printBeanNames(beanNames);
+        Object personFactory = springContext.getBean("personFactory");
+        System.out.println(personFactory);      //FactoryBean 返回的是要创建的目标对象
+        Object personFactory1 = springContext.getBean("&personFactory");
+        System.out.println(personFactory1);      //FactoryBean &前缀返回的是自身实例
+        Object personFactory2 = springContext.getBean("personFactory");
+        System.out.println(personFactory2);      //FactoryBean 返回的是要创建的目标对象
+
+    }
+
+
+    @Test
+    @DisplayName("testBeanLifeCycle")
+    void testBeanLifeCycle() {
+        SpringContext springContext = new SpringContext(ContextType.LifeCycle);
+        System.out.println("Spring Context initialized...");
+        String[] beanNames = springContext.getBeanNames();
+        printBeanNames(beanNames);
+
+        // singleton 单例，容器初始化过程中创建实例，并调用initMethod，在IoC关闭时自动调用destroy
+        // prototype 多例，获取对象时创建实例，并调用initMethod，手动处理destroy
+        Object school = springContext.getBean("school");
+        System.out.println(school);
+
+        springContext.close();
     }
 
 }

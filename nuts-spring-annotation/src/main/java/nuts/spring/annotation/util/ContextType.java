@@ -10,5 +10,6 @@ public enum ContextType {
     Scope,
     Lazy,
     Conditional,
-    Import;
+    Import,
+    FactoryBean, LifeCycle;
 }

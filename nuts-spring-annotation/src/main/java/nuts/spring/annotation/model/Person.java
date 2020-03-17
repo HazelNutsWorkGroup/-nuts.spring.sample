@@ -4,6 +4,12 @@ package nuts.spring.annotation.model;
  * @author ach
  */
 public class Person {
+
+
+    public Person(){
+        System.out.println("Person initialized...");
+    }
+
     private String name;
     private int age;
 

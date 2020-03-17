@@ -1,12 +1,12 @@
-Instance person...
+School Structure...
+School initializing...
 Spring Context initialized...
 U===>org.springframework.context.annotation.internalConfigurationAnnotationProcessor
 Q===>org.springframework.context.annotation.internalAutowiredAnnotationProcessor
 N===>org.springframework.context.annotation.internalCommonAnnotationProcessor
 F===>org.springframework.context.event.internalEventListenerProcessor
 D===>org.springframework.context.event.internalEventListenerFactory
-===>importConfiguration
-(===>nuts.spring.annotation.model.Group
-*===>nuts.spring.annotation.model.Classic
-===>person
+===>lifeCycleConfiguration
 ===>school
+.nuts.spring.annotation.model.School@748c51ad
+school destroy...

@@ -9,8 +9,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
-@Configuration
-@Import({Group.class, MyImportSelector.class, MyImportBeanDefinitionRegistrar.class})
+//@Configuration
+//@Import({Group.class, MyImportSelector.class, MyImportBeanDefinitionRegistrar.class})
 public class ImportConfiguration {
 
     /**

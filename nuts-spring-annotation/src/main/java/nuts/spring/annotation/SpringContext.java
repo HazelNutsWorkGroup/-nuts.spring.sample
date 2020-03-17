@@ -3,7 +3,6 @@ package nuts.spring.annotation;
 import nuts.spring.annotation.config.*;
 import nuts.spring.annotation.model.Person;
 import nuts.spring.annotation.util.ContextType;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 /**
@@ -16,7 +15,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
  */
 public class SpringContext {
 
-    private ApplicationContext context;
+    private AnnotationConfigApplicationContext context;
 
     public SpringContext() {
         context = new AnnotationConfigApplicationContext(DefaultConfiguration.class);
@@ -52,7 +51,14 @@ public class SpringContext {
                 context = new AnnotationConfigApplicationContext(ImportConfiguration.class);
                 break;
             }
-
+            case FactoryBean: {
+                context = new AnnotationConfigApplicationContext(FactoryBeanConfiguration.class);
+                break;
+            }
+            case LifeCycle: {
+                context = new AnnotationConfigApplicationContext(LifeCycleConfiguration.class);
+                break;
+            }
             default: {
                 context = new AnnotationConfigApplicationContext(DefaultConfiguration.class);
             }
@@ -67,4 +73,15 @@ public class SpringContext {
         return context.getBeanDefinitionNames();
     }
 
+    public Object getBean(String name) {
+        return context.getBean(name);
+    }
+
+    public <T> T getBean(String name, Class<T> requiredType) {
+        return context.getBean(name, requiredType);
+    }
+
+    public void close() {
+        context.close();
+    }
 }
