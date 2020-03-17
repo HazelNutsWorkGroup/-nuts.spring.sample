@@ -54,7 +54,7 @@
 > **提示：** 对应测试方法 testFactoryBean  
 
 + **步骤十二** 
-    Bean 生命周期
+    Bean 生命周期initMethod, destroyMethod
 ```java
     @Configuration
     public class LifeCycleConfiguration {
@@ -68,128 +68,86 @@
 ```  
 > **提示：** 对应测试方法 testBeanLifeCycle  
 
-+ **步骤三** 
-    excludeFilters
++ **步骤十三** 
+    Bean 生命周期InitializingBean, DisposableBean
 ```java
-    @Configuration
-    @ComponentScan(value = "nuts.spring.annotation", excludeFilters = {
-            @ComponentScan.Filter(type = FilterType.ANNOTATION, classes = {Controller.class, Configuration.class})
-    })
-    public class ExcludeConfiguration {
+    public class Student implements InitializingBean, DisposableBean {
     
+        public Student(){
+            System.out.println("Student constructor...");
+        }
+    
+        @Override
+        public void destroy() throws Exception {
+            System.out.println("Student destroy...");
+        }
+    
+        @Override
+        public void afterPropertiesSet() throws Exception {
+            System.out.println("Student afterPropertiesSet...");
+        }
     }
 ```  
-> **提示：** 对应测试方法 testExcludeBeanNames  
+> **提示：** 对应测试方法 testBeanLifeCycle  
 
-+ **步骤四** 
-    includeFilters
++ **步骤十四** 
+    Bean 生命周期BeanPostProcessor
 ```java
-    @Configuration
-    @ComponentScan(value = "nuts.spring.annotation", includeFilters = {
-            @ComponentScan.Filter(type = FilterType.ANNOTATION, classes = {Service.class})
-    }, useDefaultFilters = false) //需要禁用默认引入规则
-    public class IncludeConfiguration {
+    public class MyBeanPostProcessor implements BeanPostProcessor {
+        @Override
+        public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
+            System.out.println("postProcessBeforeInitialization:" + beanName + ", Instance:" + beanName);
+            return bean;
+        }
     
+        @Override
+        public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
+            System.out.println("postProcessAfterInitialization:" + beanName + ", Instance:" + beanName);
+            return bean;
+        }
     }
 ```  
-> **提示：** 对应测试方法 testIncludeBeanNames  
+> **提示：** 对应测试方法 testBeanLifeCycle  
 
-+ **步骤五** 
++ **步骤十五** 
     自定义Filter类型
 ```java
-    @Configuration
-    @ComponentScan(value = "nuts.spring.annotation", includeFilters = {
-            @ComponentScan.Filter(type = FilterType.CUSTOM, classes = {
-                    CustomerFilter.class
-            })
-    })
-    public class CustomerConfiguration {
-    }
+//
 ```  
 > **提示：** 对应测试方法 testIncludeBeanNames  
 
-+ **步骤六** 
++ **步骤十六** 
     Scope 指定单实例/多实例
 ```java
-    /**
-     * Scope's parameter
-     * singleton Single instance, created during container initialization
-     * prototype multi instance, created only when getting examples
-     */
-    @Scope("prototype")
-    @Bean
-    public Person person() {
-        System.out.println("Instance person...");
-        return new Person();
-    }
+//
 ```  
 > **提示：** 对应测试方法 testInstanceScope  
 
-+ **步骤七** 
++ **步骤十七** 
     Lazy 懒加载
 ```java
-    @Lazy
-    @Bean
-    public Person person() {
-        System.out.println("Instance person...");
-        return new Person();
-    }
+//
 ```  
 > **提示：** 对应测试方法 testInstanceLazy
 
-+ **步骤八** 
++ **步骤十八** 
     Conditional 按条件加载
 ```java
-    @Conditional(WindowsCondition.class)
-    @Bean("windows")
-    public Person getWindows() {
-        System.out.println("Instance Windows...");
-        return new Person();
-    }
-
-    @Conditional(LinuxCondition.class)
-    @Bean("linux")
-    public Person getLinux() {
-        System.out.println("Instance Linux...");
-        return new Person();
-    }
+//
 ```  
 > **提示：** 对应测试方法 testConditional   
 
-+ **步骤九** 
++ **步骤十九** 
     Import 快速引入第三方组件
 ```java
-@Configuration
-@Import(Group.class)
-public class ImportConfiguration {
-
-    /**
-     * ComponentScan
-     * Bean
-     * Import
-     */
-    @Bean
-    public Person person() {
-        System.out.println("Instance person...");
-        return new Person();
-    }
-}
+//
 ```  
 > **提示：** 对应测试方法 testImportBean
 
-+ **步骤十** 
++ **步骤二十** 
     ImportSelector 方式引入第三方组件
 ```java
-    @Configuration
-    @Import({Group.class, MyImportSelector.class, MyImportBeanDefinitionRegistrar.class})
-    public class ImportConfiguration { }
-
-    public class MyImportSelector implements ImportSelector {
-        @Override
-        public String[] selectImports(AnnotationMetadata importingClassMetadata) {
-            return new String[]{"nuts.spring.annotation.model.Classic"};
-        }
-    }
+//
 ```  
 > **提示：** 对应测试方法 testImportBean  
 

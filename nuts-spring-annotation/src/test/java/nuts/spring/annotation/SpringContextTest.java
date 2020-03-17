@@ -141,6 +141,11 @@ class SpringContextTest {
         Object school = springContext.getBean("school");
         System.out.println(school);
 
+        Object student = springContext.getBean("nuts.spring.annotation.model.Student");
+        System.out.println(student);
+
+        Object teacher = springContext.getBean("nuts.spring.annotation.model.Teacher");
+        System.out.println(teacher);
         springContext.close();
     }
 
