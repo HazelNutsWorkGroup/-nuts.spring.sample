@@ -113,3 +113,5 @@ gradle-app.setting
 # gradle/wrapper/gradle-wrapper.properties
 
 /.idea/
+/nuts-spring-annotation/build/
+/nuts-spring-xml/build/
