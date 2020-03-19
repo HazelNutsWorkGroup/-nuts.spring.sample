@@ -110,30 +110,104 @@
 > **提示：** 对应测试方法 testBeanLifeCycle  
 
 + **步骤十五** 
-    自定义Filter类型
+    @Value 支持直接赋值、SpEL“#{}”、properties“${}”
 ```java
-//
+    public class Door {
+    
+        @Value("#{2*2}")
+        private int number;
+    
+        @Value("Door")
+        private String name;
+    }
+
+    public class Wheel {
+        //需要指明属性文件 @PropertySource(value = {"classpath:application.properties"})
+        @Value("${car.wheel.number}")
+        private int number;
+    
+        @Value("${car.wheel.name}")
+        private String name;
+    }
 ```  
-> **提示：** 对应测试方法 testIncludeBeanNames  
+> **提示：** 对应测试方法 testBeanAutowired  
 
 + **步骤十六** 
-    Scope 指定单实例/多实例
+    Autowired 自动装配
 ```java
-//
+    public class Car implements ApplicationContextAware {
+        //Autowired 先按照 type，若是存在多个按照 id/name , 或是由Qualifier/Primary指定,可以指定是否必须
+        @Qualifier("door2")
+        @Autowired
+        private Door door;
+    
+        @Autowired
+        private Wheel wheel;
+    
+        @Resource
+        private Seat seat2;
+        
+        @Override
+        public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+            //实现XXXAware,获取Spring内部组件
+            System.out.println(applicationContext);
+        }
+    }
 ```  
-> **提示：** 对应测试方法 testInstanceScope  
+> **提示：** 对应测试方法 testBeanAutowired  
 
 + **步骤十七** 
-    Lazy 懒加载
+    Profile 按照指定配置加载环境变量、或是配置文件
 ```java
-//
+    @Profile("dev")
+    @Primary
+    @Bean
+    public Wheel wheel1() {
+        Wheel wheel = new Wheel();
+        wheel.setName("wheel1");
+        return wheel;
+    }
 ```  
-> **提示：** 对应测试方法 testInstanceLazy
+> **提示：** 对应测试方法 testBeanAutowired
 
 + **步骤十八** 
-    Conditional 按条件加载
+    Aspect 使用
 ```java
-//
+    //需要在@Configuration配置类上标注@EnableAspectJAutoProxy，来开启AspectJAutoProxy
+    @Aspect
+    public class DivisionAspect {
+    
+        @Pointcut("execution(public int nuts.spring.annotation.model.DivisionCalculation.*(..))")
+        public void divisionPointCut() {
+        }
+    
+        @Before("divisionPointCut()")
+        public void beforeDivision() {
+            System.out.println("Before...");
+        }
+    
+        @After("divisionPointCut()")
+        public void afterDivision() {
+            System.out.println("After...");
+        }
+    
+        @AfterReturning("divisionPointCut()")
+        public void afterReturningDivision() {
+            System.out.println("AfterReturning...");
+        }
+    
+        @AfterThrowing("divisionPointCut()")
+        public void afterThrowingDivision() {
+            System.out.println("AfterThrowing...");
+        }
+    
+    //    @Around("divisionPointCut()")
+    //    public void aroundDivision() {
+    //        System.out.println("Around...");
+    //    }
+    
+    }
+
 ```  
 > **提示：** 对应测试方法 testConditional   
 
@@ -168,6 +242,7 @@
 # <a id="ref">3. 参考链接</a>  
 | 框架、组件                                                    | 参考链接                                                      | 关键概念/步骤                                                 |
 | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| @Autowired、@Inject、@Resource | https://www.cnblogs.com/pjfmeng/p/7551340.html | 三者区别 |
 | *「框架、组件」*  | *「框架、组件」的参考链接*  |  *其中的关键概念/步骤*  |
 |  |  |  |
 

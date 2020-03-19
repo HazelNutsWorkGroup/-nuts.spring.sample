@@ -1,5 +1,6 @@
 package nuts.spring.annotation;
 
+import nuts.spring.annotation.model.DivisionCalculation;
 import nuts.spring.annotation.model.Person;
 import nuts.spring.annotation.util.ContextType;
 import org.junit.jupiter.api.AfterEach;
@@ -149,4 +150,32 @@ class SpringContextTest {
         springContext.close();
     }
 
+    @Test
+    @DisplayName("testBeanAutowired")
+    void testBeanAutowired() {
+        SpringContext springContext = new SpringContext(ContextType.Autowired);
+        System.out.println("Spring Context initialized...");
+
+//        Object door = springContext.getBean("door");
+//        System.out.println(door);
+//
+//        Object wheel = springContext.getBean("wheel");
+//        System.out.println(wheel);
+
+        Object car = springContext.getBean("car");
+        System.out.println(car);
+    }
+
+    @Test
+    @DisplayName("testSpringAspect")
+    void testSpringAspect() {
+        SpringContext springContext = new SpringContext(ContextType.Aspect);
+        System.out.println("Spring Context initialized...");
+
+        DivisionCalculation calculation = springContext.getBean("divisionCalculation", DivisionCalculation.class);
+        calculation.division(2, 1);
+        System.out.println("+++++++++++++++++++++++++++++++++++");
+        calculation.division(1, 0);
+
+    }
 }

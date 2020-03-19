@@ -11,5 +11,5 @@ public enum ContextType {
     Lazy,
     Conditional,
     Import,
-    FactoryBean, LifeCycle;
+    FactoryBean, LifeCycle, Autowired, Aspect;
 }

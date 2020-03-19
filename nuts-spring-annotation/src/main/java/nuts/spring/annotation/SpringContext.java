@@ -59,6 +59,16 @@ public class SpringContext {
                 context = new AnnotationConfigApplicationContext(LifeCycleConfiguration.class);
                 break;
             }
+            case Autowired: {
+                context = new AnnotationConfigApplicationContext(BeanAutowiredConfiguration.class);
+                break;
+            }
+            case Aspect: {
+                context = new AnnotationConfigApplicationContext(SpringAspectConfiguration.class);
+                break;
+            }
+
+
             default: {
                 context = new AnnotationConfigApplicationContext(DefaultConfiguration.class);
             }

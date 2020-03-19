@@ -8,8 +8,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
-@Configuration
-@Import({Student.class, Teacher.class, MyBeanPostProcessor.class})
+//@Configuration
+//@Import({Student.class, Teacher.class, MyBeanPostProcessor.class})
 public class LifeCycleConfiguration {
 
     //    @Scope("prototype")
